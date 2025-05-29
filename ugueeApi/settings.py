@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-q@-lp^)d%t&kwuus5w-e1bzmde^j2mzawb*p*2$3)efi-9*k&$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True #modo desarrollo o modo produccion
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [] #direcciones permitidas para consultar
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +73,7 @@ WSGI_APPLICATION = 'ugueeApi.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+#Pending to change
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -120,3 +122,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'api.User'
