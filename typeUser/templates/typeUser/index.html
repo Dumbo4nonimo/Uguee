@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenido a Ugüee</title>
+    <style>
+        body { font-family: Arial; padding: 2em; background: #f4f4f4; }
+        .container { max-width: 500px; margin: auto; background: white; padding: 2em; border-radius: 10px; }
+        h2 { color: #333; }
+        select, input[type="text"], input[type="password"], button {
+            width: 100%; padding: 0.7em; margin: 0.5em 0; border-radius: 5px; border: 1px solid #ccc;
+        }
+        .section { margin-top: 2em; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Bienvenido a Ugüee</h2>
+    <p>¿No estás registrado? Selecciona tu rol para registrarte:</p>
+
+    <form id="roleForm" method="get">
+        <select name="role" id="roleSelect" required>
+            <option value="">-- Selecciona tu rol --</option>
+            <option value="student">Estudiante</option>
+            <option value="driver">Conductor</option>
+            <option value="institution">Institución</option>
+        </select>
+        <button type="submit">Registrarse</button>
+    </form>
+
+    <div class="section">
+        <p>¿Ya estás registrado? Inicia sesión:</p>
+        <form method="post" action="{% url 'custom-login' %}">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Nombre de usuario" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <button type="submit">Iniciar sesión</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById('roleForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const role = document.getElementById('roleSelect').value;
+        if (role) {
+            window.location.href = '/login/register/' + role;
+        }
+    });
+</script>
+</body>
+</html>
