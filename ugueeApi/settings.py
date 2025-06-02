@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'api',
     'login',
     'typeUser',
+    'rest_framework',
+    'rest_framework_simplejwt',
 ]
 
 LOGIN_REDIRECT_URL = '/api/'
@@ -80,10 +82,15 @@ WSGI_APPLICATION = 'ugueeApi.wsgi.application'
 #Pending to change
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ugueedb',
+        'USER': 'admin',
+        'PASSWORD': 'admin',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
+
 
 
 # Password validation
@@ -128,3 +135,9 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'api.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}

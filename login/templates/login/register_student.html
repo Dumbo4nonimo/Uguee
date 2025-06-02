@@ -6,7 +6,8 @@
     <style>
         body { font-family: Arial; background: #f4f4f4; padding: 2em; }
         .container { max-width: 500px; margin: auto; background: white; padding: 2em; border-radius: 10px; }
-        input, button { width: 100%; margin: 0.5em 0; padding: 0.7em; border: 1px solid #ccc; border-radius: 5px; }
+        input, button, select { width: 100%; margin: 0.5em 0; padding: 0.7em; border: 1px solid #ccc; border-radius: 5px; }
+        .errorlist { color: red; margin: 0; padding: 0; list-style: none; }
     </style>
 </head>
 <body>
@@ -14,10 +15,8 @@
     <h2>Registro Estudiante</h2>
     <form method="post">
         {% csrf_token %}
-        <input type="text" name="nombre" placeholder="Nombre completo" required>
-        <input type="email" name="correo" placeholder="Correo electrónico" required>
-        <input type="text" name="codigo_estudiante" placeholder="Código universitario" required>
-        <input type="password" name="password" placeholder="Contraseña" required>
+        {{ user_form.as_p }}
+        {{ role_form.as_p }}
         <button type="submit">Registrarse</button>
     </form>
 </div>

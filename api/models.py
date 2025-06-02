@@ -24,16 +24,23 @@ class Student(models.Model):
         unique=True,
         validators=[validate_7_characters, is_numeric],  
     )
-    faculty = models.CharField(max_length=100, validators=[is_numeric])
-    degree = models.CharField(max_length=100, validators=[is_numeric])
+    faculty = models.CharField(max_length=100)
+    degree = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.user.username
 
 class Institution(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    official_name = models.CharField(max_length=255)
+    official_name = models.CharField(max_length=255, unique=True)
     adreess = models.CharField(max_length=255)
     logo = models.TextField(validators=[length_limit])
     colors_set = models.CharField(max_length=100)
     state = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.official_name
+
 
 class Driver(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -42,6 +49,9 @@ class Driver(models.Model):
     institution_card = models.CharField(max_length=100)
     license = models.CharField(max_length=100)
     state = models.CharField(max_length=100) 
+
+    def __str__(self):
+        return self.user.username
 
 class Passenger(models.Model):
     driver_fk = models.ForeignKey(Driver, on_delete=models.CASCADE)
